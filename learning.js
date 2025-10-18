@@ -1,28 +1,21 @@
 "use strict";
-
-/*
 /**
  * Условия для получения кредита:
  * Пользователь должен быть старше 21 года и иметь кредитный рейтинг не ниже 650.
  * Если пользователь уже является клиентом банка, минимальный допустимый возраст снижается до 18 лет.
  * Кредит не выдается, если доход пользователя ниже 50 000 рублей, независимо от других условий.
  * Если доход пользователя превышает 100 000 рублей или кредитный рейтинг равен 850, условия возраста и статуса клиента могут быть проигнорированы.
- 
-
+ */
 function testCreditApproval(age, income, creditScore, isExistingCustomer) {
-  if (
-    age > 21 &&
-    (creditScore >= 650 || creditScore <= 850) &&
-    income > 50000
-  ) {
-    return true;
-  } else if (isExistingCustomer == true && age >= 18 && income > 50000) {
-    return true;
-  } else if (income <= 50000) {
+  if (income < 50000) {
     return false;
-  } else if (income > 100000 || creditScore === 850) {
+  }else if (income >= 100000 || creditScore === 850) {
     return true;
-  }
+  }else if (isExistingCustomer && creditScore >= 650 && age >= 18 && income >= 50000) {
+    return true;
+  }else if  (age > 21 && creditScore >= 650) {
+    return true;
+  } 
 }
 
 console.assert(
@@ -58,22 +51,11 @@ console.assert(
   "Хороший кредитный рейтинг, условия возраста и статуса игнорируются"
 );
 
-Я тебе тут написал несколько тестов под твой код, попробуй сделать так до завтра чтобы все они выполнялись при запуске
 
-*/
 
-const age = 20;
-const income = 100_000;
-const isExistingCustomer = false;
-const creditScore = 650;
+// const age = 18;
+// const income = 50_000;
+// const isExistingCustomer = true;
+// const creditScore = 650;
 
-  if (age > 21 && creditScore >= 650 && creditScore <= 850 && income > 50000) {
-    console.log(true);
-  } else if (age >= 18 && income > 50_000) {
-    console.log(true);
-  } else if (income <= 50_000) {
-    console.log(false);
-  } else if (income > 100_000 || creditScore === 850) {
-    console.log(true);
-  }
-
+  
