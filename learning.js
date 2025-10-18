@@ -9,13 +9,15 @@
 function testCreditApproval(age, income, creditScore, isExistingCustomer) {
   if (income < 50000) {
     return false;
-  }else if (income >= 100000 || creditScore === 850) {
+  }else if (income >= 100000 && creditScore >=650 || creditScore === 850) {
     return true;
   }else if (isExistingCustomer && creditScore >= 650 && age >= 18 && income >= 50000) {
     return true;
   }else if  (age > 21 && creditScore >= 650) {
     return true;
-  } 
+  } else {
+    return false;
+  }
 }
 
 console.assert(
